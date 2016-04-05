@@ -1,0 +1,39 @@
+<Collections>
+  
+  <PlaySet name="Test1">
+    <MainDeck>
+      <Card name="Soldier" quantity="4"></Card>
+      <Card name="Peon" quantity="6"></Card>
+      <Card name="Dragon" quantity="1"></Card>
+      <Card name="Ogre" quantity="2"></Card>
+      <Card name="Bomb" quantity="2"></Card>
+      <Card name="Forcefield" quantity="2"></Card>
+      <Card name="Wall" quantity="2"></Card>
+      <Card name="Cannon" quantity="3"></Card>
+    </MainDeck>
+    <SpecialDeck>
+      <Card name="Reflect" quantity="2"></Card>
+      <Card name="Return" quantity="3"></Card>
+      <Card name="Shield" quantity="2"></Card>
+    </SpecialDeck>
+  </PlaySet>
+
+  <PlaySet name="Test2">
+    <MainDeck>
+      <Card name="Soldier" quantity="2"></Card>
+      <Card name="Peon" quantity="5"></Card>
+      <Card name="Dragon" quantity="2"></Card>
+      <Card name="Ogre" quantity="3"></Card>
+      <Card name="Bomb" quantity="2"></Card>
+      <Card name="Forcefield" quantity="1"></Card>
+      <Card name="Wall" quantity="3"></Card>
+      <Card name="Cannon" quantity="3"></Card>
+    </MainDeck>
+    <SpecialDeck>
+      <Card name="Reflect" quantity="2"></Card>
+      <Card name="Return" quantity="3"></Card>
+      <Card name="Shield" quantity="2"></Card>
+    </SpecialDeck>
+  </PlaySet>
+  
+</Collections>
