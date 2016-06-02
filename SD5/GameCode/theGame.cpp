@@ -63,43 +63,11 @@ TheGame::TheGame(void)
 	NetSystem::GetInstance();
 	EventSystem::CreateInstance();
 
-	struct TestS {
-		void Test(NamedProperties& np) {
-			DebuggerPrintf("%s", "TESTS CALLBACKHIT1\n");
-		}
-		void Test2(NamedProperties& np) {
-			DebuggerPrintf("%s", "TESTS CALLBACKHIT2\n");
-		}
-	};
-
-	TestS t;
-	TestS t2;
-
 // 	RegisterEventCallback("Sunrise", Funky);
 // 	FireEvent("Sunrise");
 // 	RegisterEventCallback("Sunrise", MyFunc);
 // 	FireEvent("Sunrise");
 // 	UnregisterEventCallback("Sunrise", MyFunc);
-
-	RegisterEventSubscriber("Sunrise", t, &TestS::Test);
-	RegisterEventSubscriber("Sunrise", t, &TestS::Test2);
-	RegisterEventSubscriber("Sunrise", t2, &TestS::Test2);
-	//UnregisterObjMethodForEvent("Sunrise", t, &TestS::Test);
-	UnregisterEventForObject("Sunrise", t);
-	UnregisterObjectFromAllEvents(t);
-
-
-	FireEvent("Sunrise");
-
-	NamedProperties np;
-	int testInt = 5;
-
-	np.Set("testInt", 5);
-	int out_int;
-	PropertyGetResult result = np.Get("testInt", out_int);
-	PropertyGetResult resultBad = np.Get("badInt", out_int);
-
-	FireEventForEachFileFound("Sunrise", "Data", "*", false);
 
 }
 
