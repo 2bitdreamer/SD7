@@ -31,6 +31,7 @@
 #include "Engine/NetSystem.hpp"
 #include "Engine/NetSession.hpp"
 #include "Engine/EventSystem.hpp"
+#include "Engine/UISystem.hpp"
 
 using namespace std;
 
@@ -46,7 +47,8 @@ TheGame::TheGame(void)
 	m_testSize(0),
 	m_testData(nullptr),
 	m_testMemory(new TestMemory()),
-	m_devConsole(DevConsole::GetInstance())
+	m_devConsole(DevConsole::GetInstance()),
+	m_uiSystem(new UISystem())
 {
 	Clock::InitializeMasterClock();
 
@@ -196,6 +198,7 @@ void TheGame::Update(double deltaTimeSeconds) {
 	Clock::s_masterClock->AdvanceTime((float)deltaTimeSeconds);
 	NetSystem* networkSystem = NetSystem::GetInstance();
 	networkSystem->Tick();
+	m_uiSystem->Update(deltaTimeSeconds);
 }
 
 inline bool FileExists (const std::string& name) {
@@ -450,6 +453,7 @@ void TheGame::Render()
 	//m_fontRenderer->DrawString("Hi", RGBA(0, 255, 0, 255), Vec3(100.f, 100.f, 0.f), 50.f);
 
 	m_devConsole->Render();
+	m_uiSystem->Render();
 	//DrawTexturedDebugQuadModernGL();
 }
 

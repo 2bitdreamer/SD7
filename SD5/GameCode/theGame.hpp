@@ -27,6 +27,7 @@ class JobManager;
 class TestMemory;
 class DevConsole;
 class NetSession;
+class UISystem;
 
 class TheGame
 {
@@ -88,6 +89,7 @@ public:
 	void Init();
 
 	NetSession* m_gameSession;
+	UISystem* m_uiSystem;
 };
 
 inline void StartHosting(ConsoleCommandArgs &arg);

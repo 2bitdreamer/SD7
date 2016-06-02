@@ -1,0 +1,35 @@
+<Style name="Default">
+	<BaseWidget>
+		<Default>
+			<BackgroundColor R="200" G="100" B="200"/>
+			<BorderSize value="0.1"/>
+			<BorderColor R="100" G="0" B="50"/>
+			<FontSize value="18"/>
+			<TextColor R="255" G="255" B="255"/>
+			<Offset X="600" Y="600"/>
+		</Default>
+		<All>
+		<BackgroundColor R="255" G="0" B="55"/>
+		</All>
+	</BaseWidget>
+
+	<Button>
+		<Default>
+			<Size X="250" Y="150"/>
+			<BorderColor R="0" G="0" B="0"/>
+			<BorderSize value="0.25"/>
+			<BackgroundColor loop="true" duration="4">
+				<KeyFrame time="0" R="0" G="0" B="200" A="200"/>
+				<KeyFrame time="2" R="255" G="255" B="255" A="200"/>
+				<KeyFrame time="4" R="0" G="0" B="200" A="200"/>
+			</BackgroundColor>
+			<Offset X="200" Y="200"/>
+		</Default>
+		<Highlighted>
+			<BorderColor R="255" G="255" B="255"/>
+		</Highlighted>
+		<Pressed>
+			<BackgroundColor R="255" G="255" B="255"/>
+		</Pressed>
+	</Button>
+</Style>
