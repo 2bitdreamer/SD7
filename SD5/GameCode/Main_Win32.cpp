@@ -40,6 +40,12 @@ LPWSTR *szArgList;
 LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessageCode, WPARAM wParam, LPARAM lParam)
 {
 	unsigned char asKey = (unsigned char)wParam;
+	POINT point;
+	GetCursorPos(&point);
+	ScreenToClient(windowHandle, &point);
+	Vec2 pos = Vec2(point.x, point.y);
+	MouseEvent me;
+	me.m_cursorPos = pos;
 
 	if (asKey == VK_ESCAPE)
 		g_isQuitting = true;
@@ -60,7 +66,6 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		break;
 
 	case WM_KEYDOWN:
-		
 		break;
 
 	case WM_KEYUP:
@@ -68,17 +73,29 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		break;
 
 	case WM_RBUTTONDOWN:
+		me.m_mouseEventType = RIGHT_BUTTON_DOWN;
+		TheGame::GetInstance().OnMouseEvent(me);
 		break;
 	case WM_LBUTTONDOWN:
+		me.m_mouseEventType = LEFT_BUTTON_DOWN;
+		TheGame::GetInstance().OnMouseEvent(me);
 		break;
 
+	case WM_LBUTTONUP:
+		me.m_mouseEventType = LEFT_BUTTON_UP;
+		TheGame::GetInstance().OnMouseEvent(me);
+		break;
+
+	case WM_RBUTTONUP:
+		me.m_mouseEventType = RIGHT_BUTTON_UP;
+		TheGame::GetInstance().OnMouseEvent(me);
+		break;
 
 	case WM_MOUSEWHEEL:
 		short result = 0;
 		if ((GET_WHEEL_DELTA_WPARAM(wParam)) > 0) result = 1;
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0) result = -1;
 		break;
-
 	}
 
 	return DefWindowProc(windowHandle, wmMessageCode, wParam, lParam);
@@ -271,7 +288,7 @@ int WINAPI WinMain(HINSTANCE applicationInstanceHandle, HINSTANCE, LPSTR command
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 
-	ShowCursor(false);
+	//ShowCursor(false);
 	(void)commandLineString;
 	Initialize(applicationInstanceHandle);
 

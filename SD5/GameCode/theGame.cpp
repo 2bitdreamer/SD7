@@ -162,7 +162,7 @@ void TheGame::Update(double deltaTimeSeconds) {
 
 	//DoTests();
 
-	UpdateCameraFromMouseAndKeyboard( m_camera, deltaTimeSeconds );
+	//UpdateCameraFromMouseAndKeyboard( m_camera, deltaTimeSeconds );
 	Clock::s_masterClock->AdvanceTime((float)deltaTimeSeconds);
 	NetSystem* networkSystem = NetSystem::GetInstance();
 	networkSystem->Tick();
@@ -536,4 +536,9 @@ void TheGame::KeyReleaseEvent(unsigned char theKey) {
 	if (theKey == '4') {
 		//RECOVERABLE_ERROR("You have a headache.");
 	}
+}
+
+void TheGame::OnMouseEvent(MouseEvent me)
+{
+	m_uiSystem->OnMouseEvent(me);
 }

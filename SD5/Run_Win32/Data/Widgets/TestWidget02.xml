@@ -1,0 +1,24 @@
+<Button OnClick="TestEvent2">
+		<Default>
+			<BorderSize value="2.0"/>
+			<!-- green -->
+			<BorderColor R="0" G="255" B="50"/>
+			<FontSize value="18"/>
+			<!-- yellow -->
+			<TextColor R="255" G="255" B="0"/>
+			<Offset X="400" Y="100"/>
+			<Size X="300" Y="100"/>
+			<BackgroundColor loop="true" duration="18">
+				<KeyFrame time="0" R="255" G="0" B="0" A="255"/>
+				<KeyFrame time="3" R="0" G="255" B="0" A="255"/>
+				<KeyFrame time="6" R="0" G="255" B="0" A="255"/>
+				<KeyFrame time="9" R="0" G="0" B="255" A="255"/>
+				<KeyFrame time="12" R="0" G="0" B="255" A="255"/>
+				<KeyFrame time="15" R="255" G="255" B="255" A="255"/>
+				<KeyFrame time="18" R="255" G="255" B="255" A="255"/>
+			</BackgroundColor>
+		</Default>
+		<All>
+		<BackgroundColor R="255" G="0" B="0"/>
+		</All>
+</Button>

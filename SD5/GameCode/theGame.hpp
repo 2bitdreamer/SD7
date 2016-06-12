@@ -17,6 +17,7 @@
 #include <unordered_map>
 #include "Engine\Command.hpp"
 #include "Engine\Utilities\DevConsole.hpp"
+#include "Engine\WidgetBase.hpp"
 
 class BufferReader;
 class Player;
@@ -40,6 +41,9 @@ public:
 	void KeyPressEvent(unsigned char theKey);
 	void SetKeyNotReleased(unsigned char theKey);
 	void KeyReleaseEvent(unsigned char theKey);
+
+
+	void OnMouseEvent(MouseEvent me);
 
 	void DrawDebugQuad();
 	void SwitchToFixedFunctionPipeline();
