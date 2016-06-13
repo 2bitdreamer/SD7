@@ -65,6 +65,11 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		TheGame::GetInstance().KeyPressEvent(asKey);
 		break;
 
+	case WM_MOUSEMOVE:
+		me.m_mouseEventType = MOVED;
+		TheGame::GetInstance().OnMouseEvent(me);
+		break;
+
 	case WM_KEYDOWN:
 		break;
 

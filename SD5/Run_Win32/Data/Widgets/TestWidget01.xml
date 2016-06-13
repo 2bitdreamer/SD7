@@ -1,14 +1,16 @@
 <Button OnClick="TestEvent">
-		<Default>
-			<BorderSize value="10.0"/>
-			<BorderColor R="255" G="0" B="0"/>
-			<FontSize value="18.0"/>
-			<TextColor R="255" G="0" B="255"/>
-			<Offset X="100" Y="700"/>
-			<Size X="600" Y="100"/>
-      <Opacity value ="0.3"/>
-		</Default>
 		<All>
       <BackgroundColor R="0" G="255" B="255"/>
+      <Offset X="100" Y="700"/>
+      <BorderSize value="10.0"/>
+      <Size X="600" Y="100"/>
+      <FontSize value="18.0"/>
 		</All>
+  <Default>
+    <!--BackgroundColor R="0" G="255" B="0"/-->
+    <BorderSize value="10.0"/>
+    <BorderColor R="255" G="0" B="0"/>
+    <TextColor R="255" G="0" B="255"/>
+    <Opacity value ="0.3"/>
+  </Default>
 </Button>

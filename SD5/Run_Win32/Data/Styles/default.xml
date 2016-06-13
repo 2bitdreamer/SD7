@@ -13,21 +13,9 @@
 	</WidgetBase>
 
 	<Button>
-		<Default>
-      <BorderColor R="0" G="0" B="255"/>
-			<BackgroundColor loop="true" duration="12">
-				<KeyFrame time="0" R="255" G="0" B="0" A="255"/>
-				<KeyFrame time="2" R="0" G="0" B="255" A="255"/>
-        <KeyFrame time="4" R="0" G="0" B="255" A="255"/>
-				<KeyFrame time="6" R="0" G="255" B="0" A="255"/>
-				<KeyFrame time="8" R="0" G="255" B="0" A="255"/>
-				<KeyFrame time="10" R="255" G="255" B="255" A="255"/>
-				<KeyFrame time="12" R="255" G="255" B="255" A="255"/>
-			</BackgroundColor>
-		</Default>
 		<All>
-		<BackgroundColor R="255" G="0" B="0"/>
-		<BorderColor R="255" G="0" B="55"/>
+		  <BackgroundColor R="255" G="0" B="0"/>
+		  <BorderColor R="255" G="0" B="55"/>
       <Size X="250" Y="150"/>
 			<BorderSize value="5.0"/>
 		</All>
@@ -35,7 +23,21 @@
 			<BorderColor R="255" G="255" B="255"/>
 		</Highlighted>
 		<Pressed>
-			<BackgroundColor R="255" G="0" B="255"/>
+			<BackgroundColor R="255" G="255" B="255"/>
+      <BorderColor R="0" G="255" B="255"/>
+      <TextColor R ="0" G ="255" B ="255"/>
 		</Pressed>
+    <Default>
+      <BorderColor R="0" G="0" B="255"/>
+      <BackgroundColor loop="true" duration="12">
+        <KeyFrame time="0" R="255" G="0" B="0" A="255"/>
+        <KeyFrame time="2" R="0" G="0" B="255" A="255"/>
+        <KeyFrame time="4" R="0" G="0" B="255" A="255"/>
+        <KeyFrame time="6" R="0" G="255" B="0" A="255"/>
+        <KeyFrame time="8" R="0" G="255" B="0" A="255"/>
+        <KeyFrame time="10" R="255" G="255" B="255" A="255"/>
+        <KeyFrame time="12" R="255" G="255" B="255" A="255"/>
+      </BackgroundColor>
+    </Default>
 	</Button>
 </Style>

@@ -418,6 +418,11 @@ void TheGame::Render()
 
 	Renderer& myRenderer = Renderer::GetInstance();
 	myRenderer.SetOrtho(0.0, SCREEN_WIDTH, 0.0, SCREEN_HEIGHT, 0, 1);
+
+// 	glEnable(GL_BLEND);
+// 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_FALSE);
+	glDisable(GL_DEPTH_TEST);
 	//m_fontRenderer->DrawString("Hi", RGBA(0, 255, 0, 255), Vec3(100.f, 100.f, 0.f), 50.f);
 
 	m_devConsole->Render();
