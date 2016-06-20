@@ -35,6 +35,26 @@
 
 using namespace std;
 
+struct TestS : public Object {
+	void Test(NamedProperties& np) {
+		DebuggerPrintf("%s", "TESTS CALLBACKHIT1\n");
+	}
+	void Test2(NamedProperties& np) {
+		DebuggerPrintf("%s", "TESTS CALLBACKHIT2\n");
+	}
+
+	void Test3(NamedProperties& np) {
+		DebuggerPrintf("%s", "TESTS CALLBACKHIT3\n");
+	}
+
+	void Test4(NamedProperties& np) {
+		DebuggerPrintf("%s", "TESTS CALLBACKHIT4\n");
+	}
+
+	virtual ~TestS() {
+
+	}
+};
 
 TheGame::TheGame(void)
 	: m_shaderProgram(nullptr)
@@ -51,6 +71,8 @@ TheGame::TheGame(void)
 	m_uiSystem(new UISystem())
 {
 	Clock::InitializeMasterClock();
+	NetSystem::GetInstance();
+	EventSystem::CreateInstance();
 
 	m_camera.m_position = Vec3( 42.f, 42.f, 42.f );
 	m_camera.m_orientation.pitchDegreesAboutY = 20.f;
@@ -60,15 +82,12 @@ TheGame::TheGame(void)
 	
 	m_up = Vec3(0.f, 0.f, 1.f);
 	m_gameClock = new Clock(Clock::s_masterClock);
-	NetSystem::GetInstance();
-	EventSystem::CreateInstance();
 
-// 	RegisterEventCallback("Sunrise", Funky);
-// 	FireEvent("Sunrise");
-// 	RegisterEventCallback("Sunrise", MyFunc);
-// 	FireEvent("Sunrise");
-// 	UnregisterEventCallback("Sunrise", MyFunc);
-
+	TestS* t = new TestS();
+	RegisterEventSubscriber("UpdateEvent", *t, &TestS::Test);
+	RegisterEventSubscriber("UpdateEvent2", *t, &TestS::Test2);
+	RegisterEventSubscriber("ExitEvent1", *t, &TestS::Test3);
+	RegisterEventSubscriber("RenderEvent1", *t, &TestS::Test4);
 }
 
 
@@ -461,6 +480,8 @@ void TheGame::KeyPressEvent(unsigned char theKey) {
 				m_devConsole->AppendChar(theKey);
 		}
 	}
+
+	m_uiSystem->OnKeyboardEvent(theKey);
 }
 
 void TheGame::StartHosting(ConsoleCommandArgs &arg)

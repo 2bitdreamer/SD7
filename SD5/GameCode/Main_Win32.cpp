@@ -43,7 +43,7 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 	POINT point;
 	GetCursorPos(&point);
 	ScreenToClient(windowHandle, &point);
-	Vec2 pos = Vec2(point.x, point.y);
+	Vec2 pos = Vec2(point.x, SCREEN_HEIGHT - point.y);
 	MouseEvent me;
 	me.m_cursorPos = pos;
 
@@ -61,16 +61,22 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		g_isQuitting = true;
 		return 0;
 
-	case WM_CHAR:
-		TheGame::GetInstance().KeyPressEvent(asKey);
-		break;
-
 	case WM_MOUSEMOVE:
 		me.m_mouseEventType = MOVED;
 		TheGame::GetInstance().OnMouseEvent(me);
 		break;
-
+	
 	case WM_KEYDOWN:
+		if (asKey == VK_LEFT || asKey == VK_RIGHT) {
+			TheGame::GetInstance().KeyPressEvent(asKey);
+		}
+		break;
+
+	case WM_CHAR:
+		if (asKey == VK_LEFT || asKey == VK_RIGHT) {
+		}
+		else
+			TheGame::GetInstance().KeyPressEvent(asKey);
 		break;
 
 	case WM_KEYUP:
@@ -96,12 +102,24 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		TheGame::GetInstance().OnMouseEvent(me);
 		break;
 
-	case WM_MOUSEWHEEL:
+	case WM_MOUSEWHEEL: {
 		short result = 0;
 		if ((GET_WHEEL_DELTA_WPARAM(wParam)) > 0) result = 1;
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) < 0) result = -1;
 		break;
 	}
+	case WM_ACTIVATE: {
+
+		if (LOWORD(wParam) == WA_ACTIVE) {
+			//Activated
+		}
+		else {
+			//Inactivated
+		}
+		break;
+	}
+
+	}	
 
 	return DefWindowProc(windowHandle, wmMessageCode, wParam, lParam);
 }
@@ -211,6 +229,16 @@ void RunMessagePump()
 void Update(double deltaTimeSeconds)
 {
 	TheGame::GetInstance().Update(deltaTimeSeconds);
+	MouseEvent me;
+	me.m_mouseEventType = NONE;
+
+	POINT point;
+	GetCursorPos(&point);
+	ScreenToClient(GetActiveWindow(), &point);
+	Vec2 pos = Vec2(point.x, SCREEN_HEIGHT - point.y);
+	me.m_cursorPos = pos;
+
+	TheGame::GetInstance().OnMouseEvent(me);
 }
 
 //-----------------------------------------------------------------------------------------------

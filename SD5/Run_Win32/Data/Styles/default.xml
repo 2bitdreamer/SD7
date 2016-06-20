@@ -12,23 +12,24 @@
 		</All>
 	</WidgetBase>
 
-	<Button>
+	<Button OnClick="Hi" OnUpdate="hello">
 		<All>
-		  <BackgroundColor R="255" G="0" B="0"/>
 		  <BorderColor R="255" G="0" B="55"/>
       <Size X="250" Y="150"/>
 			<BorderSize value="5.0"/>
+      <BackgroundColor R="0" G="255" B="255"/>
+      <TextColor R="255" G="255" B="255"/>
 		</All>
 		<Highlighted>
 			<BorderColor R="255" G="255" B="255"/>
 		</Highlighted>
-		<Pressed>
-			<BackgroundColor R="255" G="255" B="255"/>
+    <Pressed>
+      <BackgroundColor R="0" G="0" B="255"/>
       <BorderColor R="0" G="255" B="255"/>
       <TextColor R ="0" G ="255" B ="255"/>
-		</Pressed>
+      <TextOpacity value=".3"/>
+    </Pressed>
     <Default>
-      <BorderColor R="0" G="0" B="255"/>
       <BackgroundColor loop="true" duration="12">
         <KeyFrame time="0" R="255" G="0" B="0" A="255"/>
         <KeyFrame time="2" R="0" G="0" B="255" A="255"/>
@@ -38,6 +39,38 @@
         <KeyFrame time="10" R="255" G="255" B="255" A="255"/>
         <KeyFrame time="12" R="255" G="255" B="255" A="255"/>
       </BackgroundColor>
+      <BorderColor R="0" G="0" B="255"/>
+      <Opacity value ="1"/>
     </Default>
 	</Button>
+
+  <Label>
+    <Default>
+      <TextContents value="I'm a sad label :("/>
+    </Default>
+  </Label>
+
+  <ProgressBar>
+    <Default>
+      <BackgroundColor R ="100" G ="100" B ="100"/>
+    </Default>
+    <All>
+      <BackgroundColor R ="100" G ="100" B ="100"/>
+    </All>
+  </ProgressBar>
+
+  <Global>
+    <All>
+      <BackgroundColor R ="100" G ="100" B ="100"/>
+    </All>
+    <Default>
+      <BackgroundColor R ="0" G ="0" B ="255"/>
+    </Default>
+    <Disabled>
+      <BackgroundColor R="100" G="100" B ="100" A="150"/>
+    </Disabled>
+    <Highlighted>
+      <TextColor R ="0" G ="255" B ="0"/>
+    </Highlighted>
+  </Global>
 </Style>

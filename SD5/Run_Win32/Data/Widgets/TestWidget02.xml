@@ -1,11 +1,22 @@
-<Button OnClick="TestEvent2">
+<Button OnClick="TestEvent2" OnUpdate="UpdateEvent,UpdateEvent2">
 		<Default>
-			<BorderSize value="2.0"/>
+			<BorderSize value="20.0"/>
 			<!-- green -->
-			<BorderColor R="0" G="255" B="50"/>
+      <BorderColor loop="true" duration="9">
+        <KeyFrame time="0" R="0" G="0" B="255" A="255"/>
+        <KeyFrame time="3" R="100" G="100" B="100" A="255"/>
+        <KeyFrame time="6" R="255" G="0" B="0" A="255"/>
+        <KeyFrame time="9" R="100" G="100" B="200" A="255"/>
+      </BorderColor>
+      <Opacity loop="true" duration="10">
+        <KeyFrame time="0" value="1.0"/>
+        <KeyFrame time="3" value="0.5"/>
+        <KeyFrame time="5" value="0.0"/>
+        <KeyFrame time="10" value="1.0"/>
+      </Opacity>
 			<!-- yellow -->
 			<TextColor R="255" G="255" B="0"/>
-			<BackgroundColor loop="true" duration="18">
+			<BackgroundColor loop="false" duration="18">
 				<KeyFrame time="0" R="255" G="0" B="0" A="255"/>
 				<KeyFrame time="3" R="0" G="255" B="0" A="255"/>
 				<KeyFrame time="6" R="0" G="255" B="0" A="255"/>
@@ -17,11 +28,48 @@
 		</Default>
 		<All>
 		  <BackgroundColor R="255" G="0" B="0"/>
-      <Offset X="400" Y="100"/>
+      <Offset loop="true" duration="9">
+        <KeyFrame time="0" X="0" Y="200"/>
+        <KeyFrame time="3" X="400" Y="200"/>
+        <KeyFrame time="6" X="800" Y="200"/>
+        <KeyFrame time="9" X="1200" Y="200"/>
+      </Offset>
       <Size X="300" Y="100"/>
       <FontSize value="18"/>
 		</All>
-  <Pressed>
+  <Pressed OnEnter="EnterEvent" OnExit="ExitEvent1">
       <TextOpacity value=".3"/>
   </Pressed>
 </Button>
+
+<Label OnRender="RenderEvent1">
+  <All>
+  <Offset X="200" Y="400"/>
+  <TextColor R="255" G="255" B="0"/>
+  </All>
+</Label>
+<ProgressBar duration="3.0">
+</ProgressBar>
+
+<Slider>
+  <Default>
+    <Offset loop="true" duration="9">
+      <KeyFrame time="0" X="0" Y="300"/>
+      <KeyFrame time="3" X="400" Y="300"/>
+      <KeyFrame time="6" X="800" Y="300"/>
+      <KeyFrame time="9" X="1200" Y="300"/>
+    </Offset>
+  </Default>
+</Slider>
+<ScrollBar>
+  
+</ScrollBar>
+<ScrollBar>
+  <Default>
+    <Offset X="50" Y="50"/>
+  </Default>
+</ScrollBar>
+
+<EditLine>
+
+</EditLine>
