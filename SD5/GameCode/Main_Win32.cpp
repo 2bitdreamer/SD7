@@ -43,7 +43,7 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 	POINT point;
 	GetCursorPos(&point);
 	ScreenToClient(windowHandle, &point);
-	Vec2 pos = Vec2(point.x, SCREEN_HEIGHT - point.y);
+	Vec2 pos = Vec2((float)point.x, (float)(SCREEN_HEIGHT - point.y));
 	MouseEvent me;
 	me.m_cursorPos = pos;
 
@@ -67,16 +67,11 @@ LRESULT CALLBACK WindowsMessageHandlingProcedure(HWND windowHandle, UINT wmMessa
 		break;
 	
 	case WM_KEYDOWN:
-		if (asKey == VK_LEFT || asKey == VK_RIGHT) {
-			TheGame::GetInstance().KeyPressEvent(asKey);
-		}
+		TheGame::GetInstance().KeyPressEvent(asKey);
 		break;
 
 	case WM_CHAR:
-		if (asKey == VK_LEFT || asKey == VK_RIGHT) {
-		}
-		else
-			TheGame::GetInstance().KeyPressEvent(asKey);
+		TheGame::GetInstance().HandleWMChar(asKey);
 		break;
 
 	case WM_KEYUP:
@@ -235,7 +230,7 @@ void Update(double deltaTimeSeconds)
 	POINT point;
 	GetCursorPos(&point);
 	ScreenToClient(GetActiveWindow(), &point);
-	Vec2 pos = Vec2(point.x, SCREEN_HEIGHT - point.y);
+	Vec2 pos = Vec2((float)point.x, (float)(SCREEN_HEIGHT - point.y));
 	me.m_cursorPos = pos;
 
 	TheGame::GetInstance().OnMouseEvent(me);

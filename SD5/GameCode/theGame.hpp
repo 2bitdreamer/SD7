@@ -35,6 +35,8 @@ class TheGame
 public:
 	TheGame(void);
 	~TheGame(void);
+
+	void HandleWMChar(unsigned char theKey);
 	void Update(double deltaTimeSeconds);
 	void Render();
 

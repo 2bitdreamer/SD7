@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "..\..\Engine\Engine.vcxproj", "{220117B3-FF15-4975-BF35-7CF07AF06529}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SD6", "GameCode\SkeletalAnimation.vcxproj", "{2FC0F804-3913-4B25-8693-CFB31C54AAB7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI_SpecialProjects", "GameCode\SkeletalAnimation.vcxproj", "{2FC0F804-3913-4B25-8693-CFB31C54AAB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

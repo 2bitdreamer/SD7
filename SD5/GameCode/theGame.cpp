@@ -38,17 +38,21 @@ using namespace std;
 struct TestS : public Object {
 	void Test(NamedProperties& np) {
 		DebuggerPrintf("%s", "TESTS CALLBACKHIT1\n");
+		(void)np;
 	}
 	void Test2(NamedProperties& np) {
 		DebuggerPrintf("%s", "TESTS CALLBACKHIT2\n");
+		(void)np;
 	}
 
 	void Test3(NamedProperties& np) {
 		DebuggerPrintf("%s", "TESTS CALLBACKHIT3\n");
+		(void)np;
 	}
 
 	void Test4(NamedProperties& np) {
 		DebuggerPrintf("%s", "TESTS CALLBACKHIT4\n");
+		(void)np;
 	}
 
 	virtual ~TestS() {
@@ -96,6 +100,10 @@ TheGame::~TheGame(void)
 
 }
 
+void TheGame::HandleWMChar(unsigned char theKey) {
+	m_uiSystem->OnKeyboardEvent(theKey);
+}
+
 
 void TheGame::SetUpPerspectiveProjection()
 {
@@ -137,6 +145,7 @@ void TestError(void* data) {
 
 void MyFunc(NamedProperties& np) {
 	DebuggerPrintf("Callback Function 1!!!\n");
+	(void)np;
 }
 
 void DoTests() {
@@ -145,9 +154,11 @@ void DoTests() {
 
 		void Test(NamedProperties& np) {
 			DebuggerPrintf("%s", "TESTS CALLBACKHIT1\n");
+			(void)np;
 		}
 		void Test2(NamedProperties& np) {
 			DebuggerPrintf("%s", "TESTS CALLBACKHIT2\n");
+			(void)np;
 		}
 
 		TestS::TestS() {
@@ -321,6 +332,7 @@ void TheGame::UpdateCameraFromMouseAndKeyboard( Camera3D& camera, double deltaSe
 void Funky(NamedProperties& np)
 {
 	DebuggerPrintf("Callback Function 2!!!\n");
+	(void)np;
 }
 
 void TheGame::ParseArgumentList(const std::string& args)
@@ -480,8 +492,14 @@ void TheGame::KeyPressEvent(unsigned char theKey) {
 				m_devConsole->AppendChar(theKey);
 		}
 	}
-
-	m_uiSystem->OnKeyboardEvent(theKey);
+	if (m_keyStates[VK_LEFT].m_isPressed)
+		m_uiSystem->OnKeyboardEvent(theKey);
+	else if (m_keyStates[VK_RIGHT].m_isPressed)
+		m_uiSystem->OnKeyboardEvent(theKey);
+	else if (m_keyStates[VK_UP].m_isPressed)
+		m_uiSystem->OnKeyboardEvent(theKey);
+	else if (m_keyStates[VK_DOWN].m_isPressed)
+		m_uiSystem->OnKeyboardEvent(theKey);
 }
 
 void TheGame::StartHosting(ConsoleCommandArgs &arg)
