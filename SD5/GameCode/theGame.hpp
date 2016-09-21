@@ -34,6 +34,7 @@ class TheGame
 {
 public:
 	TheGame(void);
+	void RenderCube();
 	~TheGame(void);
 
 	void HandleWMChar(unsigned char theKey);

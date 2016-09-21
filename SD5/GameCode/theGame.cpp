@@ -94,6 +94,150 @@ TheGame::TheGame(void)
 	RegisterEventSubscriber("RenderEvent1", *t, &TestS::Test4);
 }
 
+void TheGame::RenderCube() {
+	Renderer& myRenderer = Renderer::GetInstance();
+	float size = 10.f;
+
+	glPushAttrib(GL_POLYGON_BIT);
+
+	std::vector<Vertex> vertices;
+
+	myRenderer.PushMatrix();
+	myRenderer.TranslateMatrix(0.f, 0.f, 30.f);
+
+	Vertex vertex;
+	vertex.m_color = RGBA(255, 0, 0, 255);
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(0, 255, 0, 255);
+
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, -size); // triangle 2 : end
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(0, 0, 255, 255);
+
+	vertex.m_position = Vec3(size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(255, 0, 255, 255);
+
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(0, 255, 255, 255);
+
+	vertex.m_position = Vec3(-size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(255, 255, 255, 255);
+
+	vertex.m_position = Vec3(size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(255, 0, 100, 255);
+
+	vertex.m_position = Vec3(size, -size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(0, 100, 100, 255);
+
+	vertex.m_position = Vec3(size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, -size);
+	vertices.push_back(vertex);
+
+	vertex.m_color = RGBA(155, 155, 0, 255);
+
+	vertex.m_position = Vec3(-size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(-size, size, size);
+	vertices.push_back(vertex);
+
+	vertex.m_position = Vec3(size, -size, size);
+	vertices.push_back(vertex);
+
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	myRenderer.RenderPrimitives(GL_PATCHES, vertices, "", "TesselationTestShader");
+	myRenderer.PopMatrix();
+	glPopAttrib();
+}
+
 
 TheGame::~TheGame(void)
 {
@@ -192,22 +336,11 @@ void TheGame::Update(double deltaTimeSeconds) {
 
 	//DoTests();
 
-	//UpdateCameraFromMouseAndKeyboard( m_camera, deltaTimeSeconds );
+	UpdateCameraFromMouseAndKeyboard( m_camera, deltaTimeSeconds );
 	Clock::s_masterClock->AdvanceTime((float)deltaTimeSeconds);
 	NetSystem* networkSystem = NetSystem::GetInstance();
 	networkSystem->Tick();
 	m_uiSystem->Update(deltaTimeSeconds);
-}
-
-inline bool FileExists (const std::string& name) {
-	ifstream f(name.c_str());
-	if (f.good()) {
-		f.close();
-		return true;
-	} else {
-		f.close();
-		return false;
-	}   
 }
 
 
@@ -428,6 +561,7 @@ void ShowHash(void* data)
 	delete data;
 }
 
+
 //Call Render on each type of object that needs to be rendered
 void TheGame::Render()
 {
@@ -446,15 +580,17 @@ void TheGame::Render()
 
 	//DrawTexturedDebugQuadModernGL();
 	DrawAxes();
+	RenderCube();
 
 	Renderer& myRenderer = Renderer::GetInstance();
-	myRenderer.SetOrtho(0.0, SCREEN_WIDTH, 0.0, SCREEN_HEIGHT, 0, 1);
+	myRenderer.CreateIcosahedron();
 
-// 	glEnable(GL_BLEND);
-// 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_FALSE);
+	myRenderer.SetOrtho(0.0, SCREEN_WIDTH, 0.0, SCREEN_HEIGHT, 0, 1);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glDepthMask(GL_FALSE);
 	glDisable(GL_DEPTH_TEST);
-	//m_fontRenderer->DrawString("Hi", RGBA(0, 255, 0, 255), Vec3(100.f, 100.f, 0.f), 50.f);
+	m_fontRenderer->DrawString("Hi", RGBA(0, 255, 0, 255), Vec3(100.f, 100.f, 0.f), 50.f);
 
 	m_devConsole->Render();
 	m_uiSystem->Render();
